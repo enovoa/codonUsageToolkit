@@ -2,7 +2,6 @@
 
 
 ## 1. READ DATA (by kingdom and GC content) ##
-directory
 arch_30_40<-read.table("dat/arch_30-40.pasted.sorted.values.transposed")
 arch_40_50<-read.table("dat/arch_40-50.pasted.sorted.values.transposed")
 arch_50_60<-read.table("dat/arch_50-60.pasted.sorted.values.transposed")
