@@ -1,8 +1,6 @@
 ### AVERAGE CODON USAGE PER SPECIES - including DOMAIN and GC CONTENT info  ###
 
-
-## 1. READ DATA (by kingdom and GC content) ##
-directory
+## 1. READ DATA (by domain of life and GC content) ##
 arch_30_40<-read.table("dat/arch_30-40.pasted.sorted.values.transposed")
 arch_40_50<-read.table("dat/arch_40-50.pasted.sorted.values.transposed")
 arch_50_60<-read.table("dat/arch_50-60.pasted.sorted.values.transposed")
@@ -37,7 +35,7 @@ all_bact<-rbind(bact_below30,bact_30_40,bact_40_50,bact_50_60,bact_60_70,bact_ov
 all_euk<-rbind(euk_below30,euk_30_40,euk_40_50,euk_50_60,euk_60_70,euk_over70) #164 sps
 all_allkingdoms<-rbind(all_arch, all_bact, all_euk)
 
-# Define kingdom vector
+# Define domain vector
 kingdom.group<-c(rep("blue",dim(all_arch)[1]),rep("darkgoldenrod1",dim(all_bact)[1]),rep("green4 ",dim(all_euk)[1]))
 
 # Read codons
@@ -52,9 +50,9 @@ mydist=function(c) {dist(c,method="manhattan")}
 myclust=function(c) {hclust(c,method="complete")}
 
 # Define breaks
-color.breaks <- c(seq(0, 0.79, length=100), 			# for color 1
-				seq(0.8, 1.2, length=100),				# for color 2
-				seq(1.21, 6, length=100))				# for color 3
+color.breaks <- c(seq(0, 0.79, length=100), 				# for color 1
+		seq(0.8, 1.2, length=100),				# for color 2
+		seq(1.21, 6, length=100))				# for color 3
 
 # Define color palette
 mycol <- colorpanel(n=299,low="green",mid="black",high="red")
@@ -71,7 +69,7 @@ d4<-d3[,-49]
 all_allkingdoms.without_ter_trp_met<-d4[,-15]
 
 # Plot
-#png("heatmap_1625sps_average_codon_usage_GCcontent.png",
+png("heatmap_1625sps_average_codon_usage_GCcontent.png",
 	width = 5 * 300,
 	height = 5*300,
 	res = 300,
@@ -99,6 +97,6 @@ heatmap.2(as.matrix(t(all_allkingdoms.without_ter_trp_met)),
 	hclustfun=myclust, 				# clustering method
 	distfun=mydist) 				# distance method
 
-#dev.off()
+dev.off()
 
 
